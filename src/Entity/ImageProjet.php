@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ImageProjetRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -10,6 +11,7 @@ use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 #[ORM\Entity(repositoryClass: ImageProjetRepository::class)]
 #[Uploadable]
+#[ApiResource(formats: ["json"])]
 class ImageProjet
 {
     #[ORM\Id]

@@ -2,12 +2,17 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\TechnoRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TechnoRepository::class)]
+#[ApiResource(formats: ["json"])]
+#[ApiFilter(SearchFilter::class, properties: ["nom" => "ipartial"])]
 class Techno
 {
     #[ORM\Id]
@@ -103,4 +108,11 @@ class Techno
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->getNom(); // Supposons que Techno ait une méthode getName()
+    }
+
+
 }
