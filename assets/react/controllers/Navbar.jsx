@@ -5,11 +5,13 @@ const Navbar = () =>{
     const links = [
         {
         id: 1,
-        link: 'home'
+        link: 'home',
+        href: '#home'
         },
         {
             id: 2,
-            link: 'about'
+            link: 'about',
+            href: '#about'
         },
         {
             id: 3,
@@ -26,12 +28,12 @@ const Navbar = () =>{
         setNav(!nav)
     }
     return (
-        <div className="flex justify-between items-center h-24 max-w-[1240px] px-4 mx-auto">
+        <div className="flex justify-between items-center h-24 max-w-[1240px] px-4 mx-auto sticky">
             <h1 className="w-full text-5xl font-bold text-white ">IS.<span className="text-emerald-700">_</span> </h1>
             <ul className="md:flex hidden">
-                {links.map(({id, link}) => (
+                {links.map(({id, link, href}) => (
                     <li key={id} className="p-4 cursor-pointer font-medium hover:scale-105 duration-300 text-gray-500 capitalize ">
-                        {link}
+                        <a href={href}>{link}</a>
                     </li>
                 ))}
             </ul>

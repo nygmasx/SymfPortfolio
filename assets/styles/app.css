@@ -8,3 +8,22 @@
         font-family: 'Montserrat', sans-serif;
     }
 }
+
+@keyframes marquee {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: -52.5%;
+    }
+}
+.animate {
+    width: 100%;
+    animation: marquee 10s linear infinite;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.animate:hover {
+    animation-play-state: paused;
+}

@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ImageProjetRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
 use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
@@ -20,9 +21,11 @@ class ImageProjet
     private ?int $id = null;
 
     #[UploadableField(mapping: 'projet', fileNameProperty: 'nom', size: 'taille')]
+    #[Groups(['read:Projet'])]
     private ?File $file = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['read:Projet'])]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]

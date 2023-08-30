@@ -4,31 +4,42 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\ProjetRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ProjetRepository::class)]
-#[ApiResource(formats: ["json"])]
+#[ApiResource(formats: ["json"], normalizationContext: ['groups' => ['read:collection']],
+operations: [
+    new GetCollection(normalizationContext: ['groups' => ['read:collection', 'read:Projet']]),
+    new Get(normalizationContext: ['groups' => ['read:collection', 'read:Projet']])])]
 class Projet
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read:collection'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['read:collection'])]
     private ?string $titre = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['read:collection'])]
     private ?string $description = null;
 
     #[ORM\OneToMany(mappedBy: 'projet', targetEntity: ImageProjet::class, cascade: ['persist'], orphanRemoval: true)]
+    #[Groups(['read:Projet'])]
     private Collection $image;
 
     #[ORM\ManyToMany(targetEntity: Techno::class, inversedBy: 'projets')]
+    #[Groups(['read:collection'])]
     private Collection $technos;
 
     public function __construct()
