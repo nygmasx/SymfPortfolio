@@ -9,6 +9,7 @@ use App\Repository\TechnoRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: TechnoRepository::class)]
 #[ApiResource(formats: ["json"])]
@@ -18,12 +19,15 @@ class Techno
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read:Projet'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['read:Projet'])]
     private ?string $nom = null;
 
     #[ORM\OneToMany(mappedBy: 'techno', targetEntity: ImageTechno::class, cascade: ['persist'], orphanRemoval: true)]
+    #[Groups(['read:Projet'])]
     private Collection $image;
 
     #[ORM\ManyToMany(targetEntity: Projet::class, mappedBy: 'technos')]

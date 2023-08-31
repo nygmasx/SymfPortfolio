@@ -4,6 +4,7 @@ import TechnoSlider from "./TechnoSlider";
 import MyModal from "./Modal";
 import Hero from "./Hero";
 import About from "./About";
+import Projects from "./Projects";
 
 
 function App(){
@@ -12,6 +13,7 @@ function App(){
             <Navbar/>
             <Hero/>
             <About/>
+            <Projects/>
         </>
 
     );

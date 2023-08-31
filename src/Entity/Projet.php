@@ -39,8 +39,16 @@ class Projet
     private Collection $image;
 
     #[ORM\ManyToMany(targetEntity: Techno::class, inversedBy: 'projets')]
-    #[Groups(['read:collection'])]
+    #[Groups(['read:Projet'])]
     private Collection $technos;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['read:Projet'])]
+    private ?string $lien = null;
+
+    #[ORM\Column(length: 255)]
+    #[Groups(['read:collection'])]
+    private ?string $date = null;
 
     public function __construct()
     {
@@ -135,6 +143,30 @@ class Projet
     public function removeTechno(Techno $techno): static
     {
         $this->technos->removeElement($techno);
+
+        return $this;
+    }
+
+    public function getLien(): ?string
+    {
+        return $this->lien;
+    }
+
+    public function setLien(?string $lien): static
+    {
+        $this->lien = $lien;
+
+        return $this;
+    }
+
+    public function getDate(): ?string
+    {
+        return $this->date;
+    }
+
+    public function setDate(string $date): static
+    {
+        $this->date = $date;
 
         return $this;
     }

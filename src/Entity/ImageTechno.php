@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ImageTechnoRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
 use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
@@ -17,6 +18,7 @@ class ImageTechno
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read:Projet'])]
     private ?int $id = null;
 
     #[UploadableField(mapping: 'techno', fileNameProperty: 'nom',size: 'taille',)]
@@ -27,6 +29,7 @@ class ImageTechno
     private ?Techno $techno = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['read:Projet'])]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]

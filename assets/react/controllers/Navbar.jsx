@@ -15,11 +15,13 @@ const Navbar = () =>{
         },
         {
             id: 3,
-            link: 'projects'
+            link: 'projects',
+            href: '#projects'
         },
         {
             id: 4,
-            link: 'contact'
+            link: 'contact',
+            href: '#contact'
         },
     ]
 

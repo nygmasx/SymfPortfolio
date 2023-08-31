@@ -26,7 +26,9 @@ class ProjetCrudController extends AbstractCrudController
 
             yield TextField::new('titre');
             yield TextEditorField::new('description');
+            yield TextField::new('date');
             yield CollectionField::new('image')->setEntryType(ImageProjetType::class);
+            yield TextField::new('lien');
             yield AssociationField::new('technos')
                 ->autocomplete();
 
