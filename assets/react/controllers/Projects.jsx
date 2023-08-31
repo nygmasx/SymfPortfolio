@@ -55,12 +55,12 @@ const Projects = () => {
 
 
     return (
-        <div id="projects" className="text-white w-full py-16 mt-[70px] md:mt-[120px]">
+        <div id="projects" className="text-white w-full py-16 mt-[70px] md:mt-[120px] flex flex-col">
             <h1 className="text-center text-4xl font-semibold">My Projects</h1>
             <p className="text-center text-xl mt-8 text-gray-500 font-medium">Few projects that i've done through my learning.</p>
             <div className="max-w-[1240px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 justify-center mt-16">
                 {projects.map(project => (
-                    <div key={project.id} className="card bg-emerald-700 shadow-xl w-full">
+                    <div key={project.id} className="card bg-emerald-700 shadow-xl w-2/3 md:w-full mx-auto">
                         <figure>
                             <img className="max-h-full" src={"images/projet/" + project.image[0].nom} alt={project.titre} />
                         </figure>
@@ -82,8 +82,10 @@ const Projects = () => {
                             <ProjectSlider project={selectedProject} />
                             <br/>
                             <p className="mt-4 text-xl font-medium" dangerouslySetInnerHTML={{__html: selectedProject.description}}></p>
-                            <p> Stack: {selectedProject.technos.map(techno => techno.nom).join(" / ")}</p>
+                            <p className="mb-5"> Stack: {selectedProject.technos.map(techno => techno.nom).join(" / ")}</p>
                             <button className="btn items-center mx-auto"><a href={selectedProject.lien}>Link</a></button>
+
+
                         </form>
                     </dialog>
                 )}

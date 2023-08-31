@@ -5,6 +5,7 @@ import MyModal from "./Modal";
 import Hero from "./Hero";
 import About from "./About";
 import Projects from "./Projects";
+import Contact from "./Contact";
 
 
 function App(){
@@ -14,6 +15,7 @@ function App(){
             <Hero/>
             <About/>
             <Projects/>
+            <Contact/>
         </>
 
     );
