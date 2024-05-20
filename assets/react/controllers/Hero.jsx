@@ -14,9 +14,9 @@ import axios from "axios";
 import TechnoSlider from "./TechnoSlider";
 const Hero = () =>{
     return(
-        <div className="text-white" id="home">
+        <div className="text-white" id="home z-49">
             <div className="max-w-[800px] mt-[96px] lg:mt-[120px] w-full h-full mx-auto flex flex-col text-center">
-                <h1 className="font-bold p-2 mb-8 md:text-6xl md:py-4 sm:text-5xl text-4xl  ">Hi there, I'm <span className="text-emerald-700">Imrane</span>.</h1>
+                <h1 className="font-bold p-2 mb-8 md:text-6xl md:py-4 sm:text-5xl text-4xl">Hi there, I'm <span className="text-emerald-700">Imrane</span>.</h1>
                 <div className="">
                     <p className="md:text-4xl sm:text-3xl text-2xl font-bold mb-8">A Fullstack Web Developer</p>
                 </div>

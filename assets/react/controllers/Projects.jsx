@@ -9,7 +9,8 @@ const Projects = () => {
         fetch('api/projets')
             .then(response => response.json())
             .then(data => {
-                setProjects(data);
+                const sortedProjects = data.sort((a, b) => b.id - a.id);
+                setProjects(sortedProjects);
             })
             .catch(error => {
                 console.error('Error fetching projects:', error);
@@ -75,14 +76,14 @@ const Projects = () => {
                 ))}
                 {selectedProject && (
                     <dialog id="my_modal_3" className="modal text-black">
-                        <form method="dialog" className="modal-box">
+                        <form method="dialog" className="modal-box bg-emerald-700">
                             <button onClick={() => setSelectedProject(null)} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                            <h3 className="font-bold text-2xl text-black">{selectedProject.titre}</h3>
-                            <h4>{selectedProject.date}</h4>
+                            <h3 className="font-bold text-2xl text-black text-white">{selectedProject.titre}</h3>
+                            <h4 className="text-white">{selectedProject.date}</h4>
                             <ProjectSlider project={selectedProject} />
                             <br/>
-                            <p className="mt-4 text-xl font-medium" dangerouslySetInnerHTML={{__html: selectedProject.description}}></p>
-                            <p className="mb-5"> Stack: {selectedProject.technos.map(techno => techno.nom).join(" / ")}</p>
+                            <p className="mt-4 text-xl font-medium text-white" dangerouslySetInnerHTML={{__html: selectedProject.description}}></p>
+                            <p className="mb-5 text-white"> Stack: {selectedProject.technos.map(techno => techno.nom).join(" / ")}</p>
                             <button className="btn items-center mx-auto"><a href={selectedProject.lien}>Link</a></button>
 
 

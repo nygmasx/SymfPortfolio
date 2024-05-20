@@ -6,6 +6,8 @@ import Hero from "./Hero";
 import About from "./About";
 import Projects from "./Projects";
 import Contact from "./Contact";
+import Footer from "./Footer";
+import Certif from "./Certif";
 
 
 function App(){
@@ -15,7 +17,9 @@ function App(){
             <Hero/>
             <About/>
             <Projects/>
+            <Certif/>
             <Contact/>
+            <Footer/>
         </>
 
     );
