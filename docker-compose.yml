@@ -1,21 +1,53 @@
+# Copyright VMware, Inc.
+# SPDX-License-Identifier: APACHE-2.0
+
 version: '3'
 
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-15}-alpine
+  mariadb:
+    image: mariadb:10.6
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
+      MYSQL_ROOT_PASSWORD: root
     volumes:
-      - database_data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+      - db-data:/var/lib/mysql
+
+
+  php:
+    build: docker/php
+    volumes:
+      # - ./Docker/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - ./:/app
+    working_dir: /app
+
+    depends_on:
+      - mariadb
+
+  nginx:
+    build: docker/nginx
+    volumes:
+      # - ./Docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./:/app
+
+    depends_on:
+      - php
+    ports:
+      - 8000:80
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8888:80
+    environment:
+      - PMA_ARBITRARY=1
+
+  # dcru phpqa php-cs-fixer fix --config=".php-cs-fixer.php"
+  # dcru phpqa phpstan analyse --level=max src
+  phpqa:
+    image: jakzal/phpqa
+    working_dir: /project
+    volumes:
+      - .:/project
 
 volumes:
-###> doctrine/doctrine-bundle ###
-  database_data:
-###< doctrine/doctrine-bundle ###
+  db-data:
