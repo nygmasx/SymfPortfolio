@@ -31,13 +31,15 @@ export default function App() {
                         pagination={pagination}
                     >
                         <SwiperSlide><img src="images/certifications/css-course.jpg" alt=""/></SwiperSlide>
-                        <SwiperSlide><img src="images/certifications/react-ustariz.jpg" alt=""/></SwiperSlide>
+                        <SwiperSlide><img src="images/certifications/certificathon.jpg" alt=""/></SwiperSlide>
+                        <SwiperSlide><img src="images/certifications/bootstrap.jpg" alt=""/></SwiperSlide>
                         <SwiperSlide><img src="images/certifications/js-ultime.jpg" alt=""/></SwiperSlide>
-                        <SwiperSlide><img src="images/certifications/js.jpg" alt=""/></SwiperSlide>
+                        <SwiperSlide><img src="images/certifications/react-ustariz.jpg" alt=""/></SwiperSlide>
                         <SwiperSlide><img src="images/certifications/wp-firas.jpg" alt=""/></SwiperSlide>
                         <SwiperSlide><img src="images/certifications/wp-seo.jpg" alt=""/></SwiperSlide>
+                        <SwiperSlide><img src="images/certifications/js.jpg" alt=""/></SwiperSlide>
                         <SwiperSlide><img src="images/certifications/react-lannoy.jpg" alt=""/></SwiperSlide>
-                        <SwiperSlide><img src="images/certifications/wp-seo.jpg" alt=""/></SwiperSlide>
+                        <SwiperSlide><img src="images/certifications/symfony-react.jpg" alt=""/></SwiperSlide>
                     </Swiper>
                 </div>
             </div>
